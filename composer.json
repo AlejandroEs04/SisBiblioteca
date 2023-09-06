@@ -1,0 +1,20 @@
+{
+    "name": "nombre/pagina",
+    "description": "aqui va la descripcion de la pagina o sitio web",
+    "authors": [
+        {
+            "name": "Alejandro Raphael Estrada Lopez"
+        }
+    ],
+    "require": {
+        
+    },
+    "autoload": {
+        "psr-4": {
+            "Model\\" : "./models",
+            "MVC\\" : "./",
+            "Controllers\\" : "./controllers",
+            "Classes\\" : "./classes"
+        }
+    }
+}

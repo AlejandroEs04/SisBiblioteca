@@ -10,7 +10,7 @@ $router = new Router();
 /** ZONA PUBLICA **/
 $router->get('/', [PaginasController::class, 'index']);
 
-/** ZONA PRIVADA **/
+/** ZONA ADMINISTRADOR **/
 
 /** LOGIN O LOGOUT **/
 

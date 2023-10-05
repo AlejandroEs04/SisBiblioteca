@@ -14,9 +14,10 @@ body {
   line-height: 1.8;
 }
 
-a {
+body a {
   text-decoration: none;
-  color: #FFFFFF;
+  color: black;
+  font-size: 2rem;
 }
 
 .container {

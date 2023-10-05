@@ -26,7 +26,7 @@ class Router {
 
         /** Agregar las rutas protegidas **/
         $rutas_protegidas = [
-
+            
         ];
 
         /** Identificar en que ruta se encuentra el usuario **/

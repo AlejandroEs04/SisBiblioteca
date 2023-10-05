@@ -1,0 +1,21 @@
+// Container 
+.container {
+    margin: 2rem;
+}
+@media (min-width: $desktop) {
+    .container {
+        margin: 2rem 15%;
+    }
+}
+
+
+// Flex display
+.flex {
+    display: flex;
+}
+.flex-column {
+    flex-direction: column;
+}
+.flex-row {
+    flex-direction: row;
+}

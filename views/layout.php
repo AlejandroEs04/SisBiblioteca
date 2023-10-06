@@ -1,42 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="build/css/app.css">
-    <title>Bookstacker</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-</head>
-    <body>
-        <header class="headerContainer">
-            <div>
-                <h1>Logo</h1>
-            </div>
-
-            <nav>
-                <a href="/">Inicio</a>
-            </nav>
-        </header>
-
-        <div class="flex flex-row">
-            <aside class="asideContainer"></aside>
-                <?php incluirTemplate('asideContainer') ?>
+<html lang="en" class="flex h-full" >
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="dist/output.css">
+        <title>Bookstacker</title>
+    </head>
+    <body class="flex-1" >
+        <div class="flex flex-col h-full md:flex-row">
+            <aside class="w-full md:w-1/5" >
+                <?php incluirTemplate('asideContainer', null) ?>
             </aside>
 
-            <main class="mainContainer"></main>
-                <?php echo $contenido; ?>
-            </main>
+            <div class="w-full md:w-4/5" >
+                <header class="px-10 py-3 bg-green-600" >
+                    <?php incluirTemplate('header', null) ?>
+                </header>
+
+                <main class="mx-20 my-8" >
+                    <?php echo $contenido; ?>
+                </main>
+            </div>
         </div>
-        
-
-        
-
-        <footer>
-
-        </footer>
-
-        <script src="build/js/app.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     </body>
+    <script src="build/js/app.js"></script>
 </html>

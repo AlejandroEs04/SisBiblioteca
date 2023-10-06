@@ -1,5 +1,6 @@
 <?php
 
+use Controllers\AuthController;
 use Controllers\PaginasController;
 use MVC\Router;
 
@@ -13,5 +14,6 @@ $router->get('/', [PaginasController::class, 'index']);
 /** ZONA ADMINISTRADOR **/
 
 /** LOGIN O LOGOUT **/
+$router->get('/login', [AuthController::class, 'login']);
 
 $router->comprobarRutas();

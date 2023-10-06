@@ -3,7 +3,9 @@
 define('TEMPLATES_URL', __DIR__ . '/modules');
 define('FUNCIONES_URL', __DIR__ . 'funciones.php');
 
-function incluirTemplate( string $nombre ) {
+function incluirTemplate( string $nombre, $info ) {
+    $_POST["info"] = $info;
+
     include TEMPLATES_URL . "/${nombre}.php";
 }
 

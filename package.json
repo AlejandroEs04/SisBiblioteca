@@ -1,19 +1,21 @@
 {
-  "name": "nombre-pagina",
+  "name": "Bookstacker",
   "version": "1.0.0",
-  "description": "descripcion de la pagina",
+  "description": "Sistema de administracion de una biblioteca",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tailwindcss -i ./src/input.css -o ./public/dist/output.css --watch"
+  },
+  "css": {
+    "start": "tailwindcss -i ./src/input.css -o ./public/dist/output.css --watch"
   },
   "author": "Alejandro Raphael Estrada Lopez",
   "license": "ISC",
   "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-sass": "^5.1.0",
-    "sass": "^1.62.1"
-  },
-  "dependencies": {
-    "bootstrap": "^5.3.1"
+    "sass": "^1.62.1",
+    "tailwindcss": "^3.3.3"
   }
 }

@@ -14,4 +14,8 @@
             </div>
         </div>
     </div>
+
+    <div>
+        <?php incluirTemplate('formularioPrestamo', null); ?>
+    </div>
 </div>

@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <div>
+    <div class="relative" >
         <?php incluirTemplate('formularioPrestamo', null); ?>
     </div>
 </div>

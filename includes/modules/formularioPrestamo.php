@@ -1,7 +1,3 @@
-<button class="px-2 py-1 bg-green-500 hover:bg-green-600 text-white font-bold rounded-md" onclick="addBook()" >
-    Agregar Libro
-</button>
-
 <form id="formPrestamo">
     <?php incluirTemplate('modalAddBook', null); ?>
     <table class="w-full bg-slate-100 mt-5 text-center" >

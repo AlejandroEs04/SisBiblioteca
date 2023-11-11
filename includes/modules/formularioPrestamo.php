@@ -12,9 +12,11 @@
 
         <tbody>
             <tr class="border" >
-                <td>1</td>
-                <td>Libro 1</td>
-                <td>6 dias</td>
+                <?php foreach($librosTabla as $libro): ?>
+                    <td><?php echo $libro['id'] ?></td>
+                    <td><?php echo $libro['nombre'] ?></td>
+                    <td><?php echo $libro['limite'] ?></td>
+                <?php endforeach; ?>
             </tr>
         </tbody>
     </table> 

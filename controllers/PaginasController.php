@@ -6,9 +6,11 @@ use MVC\Router;
 
 class PaginasController {
     public static function index(Router $router) {
+        $librosTabla = [];
+
 
         $router->render('paginas/index', [
-
+            'librosTabla' => $librosTabla,
         ]);
     }
 

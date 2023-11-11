@@ -11,4 +11,10 @@ class PaginasController {
 
         ]);
     }
+
+    public static function agregarLibros(Router $router) {
+        $router->render('paginas/addbook', [
+            
+        ]);
+    }
 }

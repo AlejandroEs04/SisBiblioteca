@@ -12,6 +12,9 @@ $router = new Router();
 $router->get('/', [PaginasController::class, 'index']);
 
 /** ZONA ADMINISTRADOR **/
+$router->get('/add-books', [PaginasController::class, 'agregarLibros']);
+$router->post('/add-books', [PaginasController::class, 'agregarLibros']);
+
 
 /** LOGIN O LOGOUT **/
 $router->get('/login', [AuthController::class, 'login']);

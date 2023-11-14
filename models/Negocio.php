@@ -1,29 +1,35 @@
-<?php 
+<?php
 
 namespace Model;
 
-class Cliente extends ActiveRecord {
-    protected static $tabla = 'clientes';
-    protected static $columnasDB = ['id', 'nombre', 'correo', 'numero', 'calleNumero', 'colonia', 'codigoPostal', 'municipioID'];
+class Negocio extends ActiveRecord {
+    protected static $tabla = 'negocio';
+    protected static $columnasDB = ['id', 'nombre', 'correo', 'numero', 'vision', 'mision', 'logo', 'calleNumero', 'colonia', 'codigoPostal', 'municipioID'];
 
     public $id;
     public $nombre;
     public $correo;
     public $numero;
+    public $vision;
+    public $mision;
+    public $logo;
     public $calleNumero;
     public $colonia;
     public $codigoPostal;
-    public $minicipioID;
+    public $municipioID;
 
     public function __construct($args = []) {
         $this->id = $args['id'] ?? null;
         $this->nombre = $args['nombre'] ?? '';
         $this->correo = $args['correo'] ?? '';
         $this->numero = $args['numero'] ?? '';
+        $this->vision = $args['vision'] ?? '';
+        $this->mision = $args['mision'] ?? '';
+        $this->logo = $args['logo'] ?? '';
         $this->calleNumero = $args['calleNumero'] ?? '';
         $this->colonia = $args['colonia'] ?? '';
         $this->codigoPostal = $args['codigoPostal'] ?? '';
-        $this->minicipioID = $args['minicipioID'] ?? '';
+        $this->municipioID = $args['municipioID'] ?? '';
     }
 
     public function validar() {
@@ -36,19 +42,18 @@ class Cliente extends ActiveRecord {
         if(!$this->numero) {
             self::setAlerta('error', 'El numero es obligatorio');
         }
-        if(!$this->calleNumero) {
+        if(!$this->vision) {
+            self::setAlerta('error', 'La vision es obligatoria');
+        }
+        if(!$this->mision) {
+            self::setAlerta('error', 'La mision es obligatoria');
+        }
+        if(!$this->logo) {
+            self::setAlerta('error', 'El logo es obligatorio');
+        }
+        if(!$this->calleNumero || !$this->colonia || !$this->codigoPostal || !$this->municipioID) {
             self::setAlerta('error', 'La direccion es obligatoria');
         }
-        if(!$this->colonia) {
-            self::setAlerta('error', 'La direccion es obligatoria');
-        }
-        if(!$this->codigoPostal) {
-            self::setAlerta('error', 'La direccion es obligatoria');
-        }
-        if(!$this->minicipioID) {
-            self::setAlerta('error', 'La direccion es obligatoria');
-        }
-
         return self::$alertas;
     }
 }

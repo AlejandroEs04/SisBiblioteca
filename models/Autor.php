@@ -4,10 +4,11 @@ namespace Model;
 
 class Autor extends ActiveRecord {
     protected static $tabla = 'autor';
-    protected static $columnasDB = ['id', 'nombre', 'calleNumero', 'colonia', 'codigoPostal', 'numero', 'correo', 'pais', 'estado', 'municipio'];
+    protected static $columnasDB = ['id', 'nombre', 'apellidos', 'calleNumero', 'colonia', 'codigoPostal', 'numero', 'correo', 'pais', 'estado', 'municipio'];
 
     public $id;
     public $nombre;
+    public $apellidos;
     public $calleNumero;
     public $colonia;
     public $codigoPostal;
@@ -20,9 +21,10 @@ class Autor extends ActiveRecord {
     public function __construct($args = []) {
         $this->id = $args['id'] ?? null;
         $this->nombre = $args['nombre'] ?? '';
+        $this->apellidos = $args['apellidos'] ?? '';
         $this->calleNumero = $args['calleNumero'] ?? '';
         $this->colonia = $args['colonia'] ?? '';
-        $this->codigoPostal = $args['codigoPostal'] ?? '';
+        $this->codigoPostal = $args['codigoPostal'] ?? null;
         $this->numero = $args['numero'] ??'';
         $this->correo = $args['correo'] ?? '';
         $this->pais = $args['pais'] ?? null;
@@ -30,4 +32,14 @@ class Autor extends ActiveRecord {
         $this->municipio = $args['municipio'] ?? null;
     }
 
+    public function validar() {
+        if(!$this->nombre) {
+            self::setAlerta('error', 'El nombre es obligatorio');
+        }
+        if(!$this->apellidos) {
+            self::setAlerta('error', 'El/Los apellidos son obligatorios');
+        }
+        
+        return self::$alertas;
+    }
 }

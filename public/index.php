@@ -25,13 +25,6 @@ $router->post('/add-books', [AdminController::class ,'addBooks']);
 $router->get('/add-categories', [AdminController::class ,'addCategories']);
 $router->post('/add-categories', [AdminController::class ,'addCategories']);
 
-// Generos
-
-// Empleados
-$router->get('/add-books', [PaginasController::class, 'agregarLibros']);
-$router->post('/add-books', [PaginasController::class, 'agregarLibros']);
-
-
 /** LOGIN O LOGOUT **/
 $router->get('/login', [AuthController::class, 'login']);
 

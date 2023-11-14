@@ -18,17 +18,39 @@ class Libro extends ActiveRecord {
 
     public function __construct($args = []) {
         $this->id = $args['id'] ?? null;
-        $this->nombre = $args['nombre'] ?? null;
+        $this->nombre = $args['nombre'] ?? '';
         $this->editorialID = $args['editorialID'] ?? null;
         $this->generoID = $args['generoID'] ?? null;
-        $this->clasificacionID = $args['clasificacionID'] ?? null;
+        $this->clasificacionID = $args['clasificacionID'] ?? 1;
         $this->limiteID = $args['limiteID'] ?? null;
         $this->stock = $args['stock'] ?? null;
-        $this->activo = $args['activo'] ?? null;
-        $this->descripcion = $args['descripcion'] ?? null;
+        $this->activo = $args['activo'] ?? true;
+        $this->descripcion = $args['descripcion'] ?? '';
     }
 
     public function validar() {
-        
+        if(!$this->nombre) {
+            self::setAlerta('error', 'El nombre es obligatorio');
+        }
+        if(!$this->editorialID) {
+            self::setAlerta('error', 'El nombre de la editorial es obligatoria');
+        }
+        if(!$this->generoID) {
+            self::setAlerta('error', 'El genero es obligatorio');
+        }
+        if(!$this->clasificacionID) {
+            self::setAlerta('error', 'La clasificacion es obligatoria');
+        }
+        if(!$this->limiteID) {
+            self::setAlerta('error', 'El limite es obligatorio');
+        }
+        if(!$this->stock) {
+            self::setAlerta('error', 'El stock es obligatorio');
+        }
+        if(!$this->descripcion) {
+            self::setAlerta('error', 'La descripcion es obligatoria');
+        }
+
+        return self::$alertas;
     }
 }

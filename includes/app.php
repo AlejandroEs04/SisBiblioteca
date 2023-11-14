@@ -5,8 +5,8 @@ require 'config/database.php';
 require __DIR__ . '/../vendor/autoload.php';
 
 // conectarnos a la base de datos
-#$db = conectarDB();
+$db = conectarDB();
 
-#use Model\ActiveRecord;
+use Model\ActiveRecord;
 
-#ActiveRecord::setDB($db);
+ActiveRecord::setDB($db);

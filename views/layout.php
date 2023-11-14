@@ -9,11 +9,11 @@
     </head>
     <body class="flex-1" >
         <div class="flex flex-col h-full md:flex-row">
-            <aside class="w-full md:w-1/5" >
-                <?php incluirTemplate('asideContainer', null) ?>
-            </aside>
+            <!--<aside class="w-full md:w-1/5" >
+                <?php // incluirTemplate('asideContainer', null) ?>
+            </aside> -->
 
-            <div class="w-full md:w-4/5" >
+            <div class="w-full" >
                 <header class="px-10 py-3 bg-green-600" >
                     <?php incluirTemplate('header', null) ?>
                 </header>

@@ -11,7 +11,7 @@
         </thead>
 
         <tbody>
-            <tr class="border" id="tablaLibros" >
+            <tr class="border" >
                 <td>1</td>
                 <td>Libro 1</td>
                 <td>6 dias</td>

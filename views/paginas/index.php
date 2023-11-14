@@ -1,6 +1,6 @@
 <div class="flex flex-col gap-5" >
     <div class="flex flex-col gap-1" >
-        <h2 class="text-2xl font-bold" >Opciones</h2>
+        <h2 class="text-2xl font-bold">Opciones</h2>
 
         <div class="flex flex-row gap-5" >
             <div class="bg-amber-500 rounded p-4 h-32 w-56 flex flex-col items-start justify-center hover:bg-amber-600 transition-all" >

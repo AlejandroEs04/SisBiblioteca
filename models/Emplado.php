@@ -4,7 +4,7 @@ namespace Model;
 
 class Emplado extends ActiveRecord {
     protected static $tabla = 'empleado';
-    protected static $columnasDB = ['id', 'nombre', 'password', 'rangoID', 'turnoID', 'calleNumero', 'colonia', 'codigoPostal', 'municipioID', 'estadoID', 'apellidos'];
+    protected static $columnasDB = ['id', 'nombre', 'password', 'rangoID', 'turnoID', 'calleNumero', 'colonia', 'codigoPostal', 'municipioID', 'estadoID', 'apellidos', 'userName'];
 
     public $id;
     public $nombre;
@@ -17,6 +17,7 @@ class Emplado extends ActiveRecord {
     public $municipioID;
     public $estadoID;
     public $apellidos;
+    public $userName;
 
     public function __construct($args = []) {
         $this->id = $args['id'] ?? null;
@@ -30,6 +31,7 @@ class Emplado extends ActiveRecord {
         $this->municipioID = $args['municipioID'] ?? '';
         $this->estadoID = $args['estadoID'] ?? '';
         $this->apellidos = $args['apellidos'] ?? '';
+        $this->userName = $args['userName'] ?? '';
     }
 
     public function validar() {
@@ -53,5 +55,41 @@ class Emplado extends ActiveRecord {
         }
 
         return self::$alertas;
+    }
+
+    public function validarLogin() {
+        if(!$this->userName) {
+            self::setAlerta('error', 'El nombre de usuario es obligatorio');
+        }
+        if(!$this->password) {
+            self::setAlerta('error', 'El password es obligatorio');
+        }
+
+        return self::$alertas;
+    }
+
+    public function existeUsuario() {
+        $query = "SELECT * FROM  " . self::$tabla . " WHERE userName = '" . $this->userName . "' LIMIT 1";
+        $resultado = self::$db->query($query);
+
+        if($resultado->num_rows) {
+            self::$alertas['error'][] = "El nombre de usuario ya existe";
+        }
+
+        return $resultado;
+    }
+
+    public function hashPassword() {
+        $this->password = password_hash($this->password, PASSWORD_BCRYPT);
+    }
+
+    public function comprobarPassword($password) {
+        $resultado = password_verify($this->password, $password);
+
+        if(!$resultado) {
+            self::$alertas['error'][] = "Password incorrecto";
+        } else {
+            return true;
+        }
     }
 }

@@ -1,4 +1,6 @@
-<form class="flex flex-col" action="">
+<?php debuguear($_POST); ?>
+
+<form class="flex flex-col" action="/" method="POST">
     <div class="flex flex-col" >
         <label class="font-bold text-lg" >Elija el libro a agregar</label>
         <select class="border p-2" id="libros" >
@@ -25,7 +27,7 @@
     </div>
 
     <button 
-        type="button"
+        type="submit"
         class="bg-green-600 text-white font-bold px-2 py-1 rounded hover:bg-green-500 transition-colors mt-5" 
     >Agregar Libro</button>
 </form>

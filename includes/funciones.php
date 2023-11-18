@@ -4,6 +4,10 @@ define('TEMPLATES_URL', __DIR__ . '/modules');
 define('FUNCIONES_URL', __DIR__ . 'funciones.php');
 
 function incluirTemplate( string $nombre, $info ) {
+    foreach($info as $key => $value) {
+        $$key = $value;
+    }
+
     $_POST["info"] = $info;
 
     include TEMPLATES_URL . "/${nombre}.php";

@@ -24,7 +24,7 @@
             <input 
                 type="password" 
                 placeholder="Password" 
-                name="userName" 
+                name="password" 
                 id="password" 
                 class="border px-2 py-1"
             >

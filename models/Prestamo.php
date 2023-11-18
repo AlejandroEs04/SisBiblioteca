@@ -17,7 +17,7 @@ class Prestamo extends ActiveRecord {
         $this->id = $args['id'] ?? null;
         $this->clienteID = $args['clienteID'] ?? '';
         $this->empleadoID = $args['empleadoID'] ?? '';
-        $this->activo = $args['activo'] ?? '';
+        $this->activo = $args['activo'] ?? true;
         $this->fechaInicio = $args['fechaInicio'] ?? '';
         $this->fechaFin = $args['fechaFin'] ?? '';
     }

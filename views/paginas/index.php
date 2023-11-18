@@ -3,19 +3,24 @@
         <h2 class="text-2xl font-bold">Opciones</h2>
 
         <div class="flex flex-row gap-5" >
-            <div class="bg-amber-500 rounded p-4 h-32 w-56 flex flex-col items-start justify-center hover:bg-amber-600 transition-all" >
-                <h3 class="uppercase text-xl font-bold text-white" >Crear Prestamo</h3>
-                <p class="text-white text-sm" >Genera un nuevo prestamo, con los datos del libro y del cliente</p>
-            </div>
+            <a href="/add-books" class="bg-amber-500 rounded p-4 h-36 w-56 flex flex-col items-start justify-center hover:bg-amber-600 transition-all" >
+                <h3 class="uppercase text-lg font-bold text-white" >Administrar Libros</h3>
+                <p class="text-white text-sm" >Crea, edita o elimina los libros existentes</p>
+            </a>
 
-            <div class="bg-lime-600 rounded p-4 h-32 w-56 flex flex-col items-start justify-center hover:bg-lime-700 transition-all" >
-                <h3 class="uppercase text-xl font-bold text-white">Liquidar Multa</h3>
-                <p class="text-white text-sm">Liquida multas pendientes por los usuarios, recuerda solicitar numero de prestamo</p>
-            </div>
+            <a href="/add-categories" class="bg-lime-600 rounded p-4 h-36 w-56 flex flex-col items-start justify-center hover:bg-lime-700 transition-all" >
+                <h3 class="uppercase text-xl font-bold text-white">Administrar Generos</h3>
+                <p class="text-white text-sm">Crea, edita o elimina las generos existentes</p>
+            </a>
+
+            <a href="/add-authors" class="bg-blue-600 rounded p-4 h-36 w-56 flex flex-col items-start justify-center hover:bg-blue-700 transition-all" >
+                <h3 class="uppercase text-xl font-bold text-white">Administrar Autores</h3>
+                <p class="text-white text-sm">Crea, edita o elimina los autores existentes</p>
+            </a>
         </div>
     </div>
 
     <div class="relative" >
-        <?php incluirTemplate('formularioPrestamo', null); ?>
+        <?php incluirTemplate('formularioPrestamo', [$libros, $librosTabla, $empleados, $clientes]); ?>
     </div>
 </div>

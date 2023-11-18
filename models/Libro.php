@@ -3,7 +3,7 @@
 namespace Model;
 
 class Libro extends ActiveRecord {
-    protected static $_tabla = "libro";
+    protected static $tabla = "libro";
     protected static $columnasDB = ['id', 'nombre', 'editorialID', 'generoID', 'clasificacionID', 'limiteID', 'stock', 'activo', 'descripcion'];
 
     public $id;

@@ -3,7 +3,11 @@
 namespace Controllers;
 
 use Model\Autor;
+use Model\Clasificacion;
+use Model\Editorial;
 use Model\Genero;
+use Model\LimLibros;
+use Model\Libro;
 use MVC\Router;
 
 class AdminController {
@@ -32,8 +36,30 @@ class AdminController {
     }
 
     public static function addBooks(Router $router) {
-        $router->render("admin/addBooks", [
+        $editoriales = Editorial::all();
+        $generos = Genero::all();   
+        $clasificaciones = Clasificacion::all();
+        $limites = LimLibros::all();
 
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $libro = new Libro($_POST);
+
+            $alertas = $libro->validar();
+
+            if(empty($alertas)) {
+                $resultado = $libro->guardar();
+
+                if($resultado) {
+                    header('Location: /add-books');
+                }
+            }
+        }
+
+        $router->render("admin/addBooks", [
+            'editoriales' => $editoriales,
+            'generos'=> $generos,
+            'clasificaciones'=> $clasificaciones,
+            'limites'=> $limites
         ]);
     }
 

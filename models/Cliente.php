@@ -3,7 +3,7 @@
 namespace Model;
 
 class Cliente extends ActiveRecord {
-    protected static $tabla = 'clientes';
+    protected static $tabla = 'cliente';
     protected static $columnasDB = ['id', 'nombre', 'correo', 'numero', 'calleNumero', 'colonia', 'codigoPostal', 'municipioID'];
 
     public $id;

@@ -1,5 +1,5 @@
 <div class="flex flex-col items-center" >
-    <div class="w-full md:w-1/2" >
+    <div class="w-full md:w-2/3" >
         <div class="flex flex-col justify-center gap-1 text-center" >
             <h1 class="font-bold text-2xl text-green-600" >Administra los Generos</h1>
             <p class="text-lg" >Agrega, edita o elimina las categorias</p>
@@ -19,7 +19,11 @@
         </form>
     </div>
 
-    <div class="mt-5 w-full md:w-1/2 p-5" >
+    <div class="flex flex-col justify-center gap-1 text-center mt-10" >
+        <h1 class="font-bold text-3xl text-green-600" >Generos</h1>
+    </div>
+
+    <div class="mt-5 w-full md:w-2/3 p-5" >
         <table class="w-full" >
             <tr>
                 <th>ID</th>

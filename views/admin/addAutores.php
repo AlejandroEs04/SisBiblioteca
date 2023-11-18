@@ -63,6 +63,10 @@
         </form>
     </div>
 
+    <div class="flex flex-col justify-center gap-1 text-center mt-10" >
+        <h1 class="font-bold text-3xl text-green-600" >Autores</h1>
+    </div>
+
     <div class="mt-5 w-full md:w-2/3 p-5" >
         <table class="w-full" >
             <tr>

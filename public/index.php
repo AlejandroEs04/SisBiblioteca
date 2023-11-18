@@ -11,6 +11,7 @@ $router = new Router();
 
 /** ZONA PUBLICA **/
 $router->get('/', [PaginasController::class, 'index']);
+$router->post('/', [PaginasController::class, 'index']);
 
 /** ZONA ADMINISTRADOR **/
 // Autores
@@ -27,5 +28,8 @@ $router->post('/add-categories', [AdminController::class ,'addCategories']);
 
 /** LOGIN O LOGOUT **/
 $router->get('/login', [AuthController::class, 'login']);
+$router->post('/login', [AuthController::class, 'login']);
+
+$router->get('/logout', [AuthController::class,'logout']);
 
 $router->comprobarRutas();

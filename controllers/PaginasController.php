@@ -64,8 +64,15 @@ class PaginasController {
                 ];
 
                 $prestamoObj = new Prestamo($prestamo);
+                $res = $prestamoObj->guardar();
 
-                
+                foreach($librosTabla as $libro) {
+                    $response = Prestamo::crearDetPrestamo($res['id'], $libro->id);
+
+                    if($response) {
+                        header('Location: /');
+                    }
+                }
             }
         }
 

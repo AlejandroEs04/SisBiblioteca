@@ -21,4 +21,10 @@ class Prestamo extends ActiveRecord {
         $this->fechaInicio = $args['fechaInicio'] ?? '';
         $this->fechaFin = $args['fechaFin'] ?? '';
     }
+
+    public static function crearDetPrestamo($prestamoID, $libroID) {
+        $query = 'CALL crearDetPrestamo( ' . $prestamoID . ', ' . $libroID . ' )';
+        $resultado = self::$db->query($query);
+        return $resultado;
+    }
 }

@@ -63,10 +63,10 @@ class Router {
         // Identificamos la ruta en la que se esta, y si esta protegida y no estamos autenticados, se enviara al menu principal, si estamos identificados, deja accesar
         if(in_array($urlActual, $rutas_protegidas) && !$auth) {
             header('Location: /login');
-        } elseif(in_array($urlActual, $rutas_protegidas_R2) && $tipo === 2) {
-            header('Location: /libreria');
-        } elseif(in_array($urlActual, $rutas_protegidas_R3) && $tipo === 3) {
-            header('Location: /admin');
+        } elseif(in_array($urlActual, $rutas_protegidas_R2) && $tipo !== 2 && $tipo !== 3) {
+            header('Location: /');
+        } elseif(in_array($urlActual, $rutas_protegidas_R3) && $tipo !== 3) {
+            header('Location: /');
         }
 
         // Verificar que la ruta exista o no 

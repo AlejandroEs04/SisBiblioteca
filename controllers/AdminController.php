@@ -11,6 +11,17 @@ use Model\Libro;
 use MVC\Router;
 
 class AdminController {
+    public static function index(Router $router) {
+        $router->render('admin/index', [
+
+        ]);
+    }
+
+    public static function empleadosAdmin(Router $router) {
+        $router->render('admin/empleadosAdmin', [
+
+        ]);
+    }
     public static function addAutores(Router $router) {
 
         $autor = new Autor();

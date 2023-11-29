@@ -6,6 +6,8 @@ use Model\Cliente;
 use Model\Emplado;
 use Model\InfoLibro;
 use Model\Libro;
+use Model\Multa;
+use Model\MultaView;
 use Model\Prestamo;
 use MVC\Router;
 
@@ -85,9 +87,45 @@ class PaginasController {
         ]);
     }
 
-    public static function agregarLibros(Router $router) {
-        $router->render('paginas/addbook', [
-            
+    public static function prestamos(Router $router) {
+        $prestamos = Prestamo::all();
+
+        $router->render('paginas/prestamos', [
+            'prestamos' => $prestamos
+        ]);
+    }
+
+    public static function multas(Router $router) {
+        $prestamos = Prestamo::whereAll('activo', 1);
+        $multas = MultaView::all();
+
+        foreach($prestamos as $prestamo) {
+            if(strtotime($prestamo->fechaFin) < strtotime(date("Y-m-d"))) {
+                $prestamo->activo = 0;
+                $prestamo->multa = 1;
+
+                $multa = [
+                    'prestamoID' => $prestamo->id,
+                    'clienteID' => $prestamo->clienteID
+                ];
+
+                $multa = new Multa($multa);
+
+                $res = $multa->guardar();
+                
+
+                if($res) {
+                    $res2 = $prestamo->guardar();
+
+                    if($res2) {
+                        $multas = MultaView::all();
+                    }
+                }
+            }
+        }
+
+        $router->render('paginas/multas', [
+            'multas' => $multas
         ]);
     }
 }

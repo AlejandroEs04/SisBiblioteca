@@ -14,6 +14,12 @@ $router = new Router();
 $router->get('/', [PaginasController::class, 'index']);
 $router->post('/', [PaginasController::class, 'index']);
 
+$router->get('/prestamos', [PaginasController::class, 'prestamos']);
+$router->post('/prestamos', [PaginasController::class, 'prestamos']);
+
+$router->get('/multas', [PaginasController::class, 'multas']);
+$router->post('/multas', [PaginasController::class, 'multas']);
+
 /** ZONA ADMINISTRADOR **/
 
 /** LIBREROS **/

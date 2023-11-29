@@ -4,7 +4,7 @@ namespace Model;
 
 class Prestamo extends ActiveRecord {
     protected static $tabla = 'prestamo';
-    protected static $columnasDB = ['id', 'clienteID', 'empleadoID', 'activo', 'fechaInicio', 'fechaFin'];
+    protected static $columnasDB = ['id', 'clienteID', 'empleadoID', 'activo', 'fechaInicio', 'fechaFin', 'multa'];
 
     public $id;
     public $clienteID;
@@ -12,6 +12,7 @@ class Prestamo extends ActiveRecord {
     public $activo;
     public $fechaInicio;
     public $fechaFin;
+    public $multa;
 
     public function __construct($args = []) {
         $this->id = $args['id'] ?? null;
@@ -20,6 +21,7 @@ class Prestamo extends ActiveRecord {
         $this->activo = $args['activo'] ?? true;
         $this->fechaInicio = $args['fechaInicio'] ?? '';
         $this->fechaFin = $args['fechaFin'] ?? '';
+        $this->multa = $args['multa'] ?? false;
     }
 
     public static function crearDetPrestamo($prestamoID, $libroID) {

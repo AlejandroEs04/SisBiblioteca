@@ -7,9 +7,11 @@
 
         <nav class="flex ml-5 gap-5 text-white" >
             <a href="/" class="hover:text-gray-300 transition-colors" >Inicio</a>
+            <?php if($_SESSION['rango'] === '3'): ?>
             <a href="/empleados" class="hover:text-gray-300 transition-colors" >Empleados</a>
             <a href="/turnos" class="hover:text-gray-300 transition-colors" >Turnos</a>
             <a href="/rangos" class="hover:text-gray-300 transition-colors" >Rangos</a>
+            <?php endif; ?>
         </nav>
     </div>
 

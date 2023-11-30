@@ -13,6 +13,7 @@ $router = new Router();
 /** EMPLEADOS **/
 $router->get('/', [PaginasController::class, 'index']);
 $router->post('/', [PaginasController::class, 'index']);
+$router->get('/estados', [PaginasController::class, 'estados']);
 
 $router->get('/prestamos', [PaginasController::class, 'prestamos']);
 $router->post('/prestamos', [PaginasController::class, 'prestamos']);
@@ -39,8 +40,8 @@ $router->post('/add-categories', [AdminController::class ,'addCategories']);
 $router->get('/admin', [AdminController::class ,'index']);
 $router->post('/admin', [AdminController::class ,'index']);
 
-$router->get('/admin/empleado', [AdminController::class ,'empleadosAdmin']);
-$router->post('/admin/empleado', [AdminController::class ,'empleadosAdmin']);
+$router->get('/admin/empleados', [AdminController::class ,'empleadosAdmin']);
+$router->post('/admin/empleados', [AdminController::class ,'empleadosAdmin']);
 
 /** LOGIN O LOGOUT **/
 $router->get('/login', [AuthController::class, 'login']);

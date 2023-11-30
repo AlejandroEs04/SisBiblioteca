@@ -5,9 +5,14 @@ namespace Controllers;
 use Model\Autor;
 use Model\Clasificacion;
 use Model\Editorial;
+use Model\Emplado;
+use Model\EmpleadoView;
+use Model\Estado;
 use Model\Genero;
 use Model\LimLibros;
 use Model\Libro;
+use Model\Rango;
+use Model\Turno;
 use MVC\Router;
 
 class AdminController {
@@ -18,10 +23,34 @@ class AdminController {
     }
 
     public static function empleadosAdmin(Router $router) {
-        $router->render('admin/empleadosAdmin', [
+        $estados = Estado::all();
+        $turnos = Turno::all();
+        $rangos = Rango::all();
 
+        $empleados = EmpleadoView::all();
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $empleado = new Emplado($_POST);
+
+            $alertas = $empleado->validar();
+
+            if(empty($alertas)) {
+                $res = $empleado->guardar();
+
+                if($res) {
+                    header('Location: /admin/empleados');
+                }
+            }
+        }
+
+        $router->render('admin/empleadosAdmin', [
+            'turnos' => $turnos,
+            'rangos' => $rangos,
+            'estados' => $estados,
+            'empleados' => $empleados
         ]);
     }
+
     public static function addAutores(Router $router) {
 
         $autor = new Autor();

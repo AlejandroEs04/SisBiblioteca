@@ -3,16 +3,16 @@
 namespace Model;
 
 class EstadosMunicipios extends ActiveRecord {
-    protected static $tabla = 'estados_municipios';
-    protected static $columnasDB = ['id', 'estados_id', 'municipios_id'];
+    protected static $tabla = 'municipioEstados';
+    protected static $columnasDB = ['estadoID', 'nombre', 'municipioID'];
 
-    public $id;
-    public $estados_id;
-    public $municipios_id;
+    public $estadoID;
+    public $nombre;
+    public $municipioID;
 
     public function __construct($args = []) {
-        $this->id = $args['id'] ?? null;
-        $this->estados_id = $args['estados_id'] ?? '';
-        $this->municipios_id = $args['municipios_id'] ?? '';
+        $this->estadoID = $args['estadoID'] ?? '';
+        $this->nombre = $args['nombre'] ?? '';
+        $this->municipioID = $args['municipioID'] ?? '';
     }
 }

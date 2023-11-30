@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="/dist/output.css">
         <title>Bookstacker</title>
     </head>
-    <body class="flex-1" >
+    <body class="flex-1 overflow-x-hidden" >
         <div class="flex flex-col h-full md:flex-row">
             <!--<aside class="w-full md:w-1/5" >
                 <?php // incluirTemplate('asideContainer', null) ?>
@@ -18,11 +18,11 @@
                     <?php incluirTemplate('header', null) ?>
                 </header>
 
-                <main class="mx-20 my-8" >
+                <main class="mx-5 my-8 md:mx-20" >
                     <?php echo $contenido; ?>
                 </main>
             </div>
         </div>
     </body>
-    <script src="build/js/app.js"></script>
+    <script src="/build/js/app.js"></script>
 </html>

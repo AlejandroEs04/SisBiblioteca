@@ -21,7 +21,7 @@ class Prestamo extends ActiveRecord {
         $this->activo = $args['activo'] ?? true;
         $this->fechaInicio = $args['fechaInicio'] ?? '';
         $this->fechaFin = $args['fechaFin'] ?? '';
-        $this->multa = $args['multa'] ?? false;
+        $this->multa = $args['multa'] ?? '0';
     }
 
     public static function crearDetPrestamo($prestamoID, $libroID) {

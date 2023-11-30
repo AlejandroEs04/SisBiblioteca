@@ -4,11 +4,13 @@ namespace Controllers;
 
 use Model\Cliente;
 use Model\Emplado;
+use Model\EstadosMunicipios;
 use Model\InfoLibro;
 use Model\Libro;
 use Model\Multa;
 use Model\MultaView;
 use Model\Prestamo;
+use Model\PrestamoView;
 use MVC\Router;
 
 class PaginasController {
@@ -88,7 +90,29 @@ class PaginasController {
     }
 
     public static function prestamos(Router $router) {
-        $prestamos = Prestamo::all();
+        $prestamos = PrestamoView::all();
+
+        if($_GET['finalizar']) {
+            $prestamo = Prestamo::where('id', $_GET['prestamo']);
+
+            $prestamo->activo = 0;
+
+            $res = $prestamo->guardar();
+
+            if($res) {
+                header('Location: /prestamos');
+            }
+        }
+
+        if($_GET['eliminar']) {
+            $prestamo = Prestamo::where('id', $_GET['prestamo']);
+
+            $res = $prestamo->eliminar();
+
+            if($res) {
+                header('Location: /prestamos');
+            }
+        }
 
         $router->render('paginas/prestamos', [
             'prestamos' => $prestamos
@@ -127,5 +151,15 @@ class PaginasController {
         $router->render('paginas/multas', [
             'multas' => $multas
         ]);
+    }
+
+    public static function estados($id) {
+        $municipios = EstadosMunicipios::whereAll('estadoID', $_GET['id']);
+
+        // Configura el encabezado de la respuesta a JSON
+        header('Content-Type: application/json');
+
+        // Usa json_encode para convertir los datos a JSON
+        echo json_encode($municipios);
     }
 }

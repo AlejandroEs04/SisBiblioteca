@@ -35,7 +35,11 @@ class PaginasController {
             if($_POST['libro']) {
                 foreach($libros as $libro) {
                     if($libro->id === $_POST['libro']) {
+                        debuguear($libro);
+                        $librosAct = array_diff($libros, array($libro->id));
+                        debuguear($librosAct);
                         $librosTabla[$i] = $libro;
+
                     }
                 }
             }

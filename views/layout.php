@@ -13,12 +13,12 @@
                 <?php // incluirTemplate('asideContainer', null) ?>
             </aside> -->
 
-            <div class="w-full" >
+            <div class="w-full h-full" >
                 <header class="px-10 py-3 bg-green-600" >
                     <?php incluirTemplate('header', null) ?>
                 </header>
 
-                <main class="mx-5 my-8 md:mx-20" >
+                <main class="flex items-center justify-center my-14" >
                     <?php echo $contenido; ?>
                 </main>
             </div>

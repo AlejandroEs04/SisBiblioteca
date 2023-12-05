@@ -1,9 +1,6 @@
 <?php 
 
-
 use Dompdf\Dompdf;
-
-
 
 define('TEMPLATES_URL', __DIR__ . '/modules');
 define('FUNCIONES_URL', __DIR__ . 'funciones.php');
@@ -52,6 +49,10 @@ function mostrarNotificacion($resultado) {
 function crearTicket($negocio, $prestamoView) {
 
     $dompdf = new Dompdf();
+    $path = '/build/img/logo.png';
+    $type = pathinfo($path, PATHINFO_EXTENSION);
+    $data = file_get_contents($path);
+    $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
     // Estilos CSS para el ticket
     $styles = '
@@ -85,12 +86,16 @@ function crearTicket($negocio, $prestamoView) {
                 <p><strong>Dirección:</strong> ' . $negocio[0]->calleNumero .' '. $negocio[0]->colonia . ' ' . $negocio[0]->codigoPostal . '</p>
                 <p><strong>Correo:</strong> ' . $negocio[0]->correo . '</p>
                 <p><strong>Número de Teléfono:</strong> ' . $negocio[0]->numero . '</p>
+                <p><strong>Nombre del cliente:</strong> ' . $prestamoView->nombreCliente . '</p>
             </div>
             <hr>
             <h3>Libros Prestados:</h3>
-            <table>
+            <table styles={
+                display: "flex",
+                flexDirection: "column",
+                gap: "2px"
+            } >
                 <tr>
-                    <th>Cliente</th>
                     <th>Libro</th>
                     <th>Fecha de inicio</th>
                     <th>Fecha de fin</th>
@@ -98,7 +103,6 @@ function crearTicket($negocio, $prestamoView) {
 
         foreach($prestamoView->libros as $libro){
             $html .= '<tr>
-                        <td>'.$prestamoView->nombreCliente.'</td>
                         <td>'.$libro->nombre.'</td>
                         <td>'.$libro->fechaInicio.'</td>
                         <td>'.$libro->fechaFin.'</td>
@@ -126,5 +130,5 @@ function crearTicket($negocio, $prestamoView) {
     // Generar el PDF (mostrarlo en el navegador o guardar en un archivo)
     $dompdf->stream("ticket_prestamo.pdf", array("Attachment" => true));
 
-    return true;
+    header('Location: /');
 }

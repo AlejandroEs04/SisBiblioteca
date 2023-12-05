@@ -27,7 +27,10 @@ class Router {
 
         /** Agregar las rutas protegidas **/
         $rutas_protegidas = [
-            '/'
+            '/',
+            '/clientes',
+            '/prestamos', 
+            '/multas'
         ];
 
         $rutas_protegidas_R2 = [
@@ -37,9 +40,11 @@ class Router {
         ];
 
         $rutas_protegidas_R3 = [
-            '/empleados',
-            '/turnos',
-            '/rangos'
+            '/admin/empleados',
+            '/admin/turnos',
+            '/admin/rangos',
+            '/admin/config',
+            
         ];
 
         /** Identificar en que ruta se encuentra el usuario **/

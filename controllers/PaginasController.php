@@ -142,6 +142,21 @@ class PaginasController {
         $negocio = Negocio::all();
         $multas = MultaView::all();
 
+        if($_GET['id']) {
+            $multaView = MultaView::where('prestamoID', $_GET['id']);
+            $costo = ((strtotime(date("Y-m-d")) - strtotime($multaView->fechaFin))/86400) * 20;
+
+            $multa = Multa::where('prestamoID', $_GET['id']); 
+            $multa->activo = 0;
+            $multa->costo = $costo;
+
+            $res = $multa->guardar();
+
+            if($multa) {
+                header('Location: /multas');
+            }
+        }
+
         foreach($prestamos as $prestamo) {
             if(strtotime($prestamo->fechaFin) < strtotime(date("Y-m-d"))) {
                 $prestamo->activo = 0;
@@ -149,7 +164,9 @@ class PaginasController {
 
                 $multa = [
                     'prestamoID' => $prestamo->id,
-                    'clienteID' => $prestamo->clienteID
+                    'clienteID' => $prestamo->clienteID,
+                    'activo' => 1, 
+                    'costo' => 0
                 ];
 
                 $multa = new Multa($multa);
@@ -166,7 +183,7 @@ class PaginasController {
                 }
             }
         }
-
+        
         $router->render('paginas/multas', [
             'multas' => $multas
         ]);

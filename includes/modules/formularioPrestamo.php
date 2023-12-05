@@ -74,9 +74,13 @@
         </div>
     </div>
 
-    <div class="flex justify-center mt-5" >
+    <div class="flex justify-center mt-5 gap-4" >
         <button class="px-2 py-1 bg-green-500 hover:bg-green-600 text-white font-bold rounded-md" >
             Generar Prestamo
         </button>
+
+        <a href="/" class="px-2 py-1 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded-md" >
+            Reiniciar
+        </a>
     </div>
 </form>

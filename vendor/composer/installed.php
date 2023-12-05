@@ -3,7 +3,7 @@
         'name' => 'nombre/pagina',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '474e0301ab1795a7765f3b68f3a7da0af8261d13',
+        'reference' => 'bd003141107cb210a89f289bb09e49043b77c851',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -31,7 +31,7 @@
         'nombre/pagina' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '474e0301ab1795a7765f3b68f3a7da0af8261d13',
+            'reference' => 'bd003141107cb210a89f289bb09e49043b77c851',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

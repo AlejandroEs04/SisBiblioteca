@@ -50,6 +50,9 @@ $router->post('/admin/empleados', [AdminController::class ,'empleadosAdmin']);
 $router->get('/admin/schedule', [AdminController::class ,'scheduleAdmin']);
 $router->post('/admin/schedule', [AdminController::class ,'scheduleAdmin']);
 
+$router->get('/admin/config', [AdminController::class ,'configAdmin']);
+$router->post('/admin/config', [AdminController::class ,'configAdmin']);
+
 /** LOGIN O LOGOUT **/
 $router->get('/login', [AuthController::class, 'login']);
 $router->post('/login', [AuthController::class, 'login']);

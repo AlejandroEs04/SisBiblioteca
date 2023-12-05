@@ -137,8 +137,10 @@
                 </div>
             </fieldset>
 
-            <input type="number" name="id" value="<?php echo $empleado->id; ?>" hidden >
-            <input type="number" name="activo" value="<?php echo $empleado->activo; ?>" hidden >
+            <?php if($empleado): ?>
+                <input type="number" name="id" value="<?php echo $empleado->id; ?>" hidden >
+                <input type="number" name="activo" value="<?php echo $empleado->activo; ?>" hidden >
+            <?php endif; ?>
 
             <button class="bg-green-600 py-1 px-2 hover:bg-green-700 rounded font-bold text-white" >
                 <?php 

@@ -4,18 +4,18 @@ namespace Model;
 
 class Turno extends ActiveRecord {
     protected static $tabla = 'turno';
-    protected static $columnasDB = ['id', 'nombre', 'fechaInicio', 'fechaFin'];
+    protected static $columnasDB = ['id', 'nombre', 'horaInicio', 'horaFin'];
 
     public $id;
     public $nombre;
-    public $fechaInicio;
-    public $fechaFin;
+    public $horaInicio;
+    public $horaFin;
 
     public function __construct($args = []) {
         $this->id = $args['id'] ?? null;
         $this->nombre = $args['nombre'] ?? '';
-        $this->fechaInicio = $args['fechaInicio'] ?? '';
-        $this->fechaFin = $args['fechaFin'] ?? '';
+        $this->horaInicio = $args['horaInicio'] ?? '';
+        $this->horaFin = $args['horaFin'] ?? '';
     }
 
     public function validar() {

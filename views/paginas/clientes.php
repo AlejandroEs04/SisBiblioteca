@@ -1,8 +1,8 @@
 <div class="flex flex-col items-center overflow-x-hidden w-full" >
     <div class="w-full md:w-2/3" >
         <div class="text-center" >
-            <h1 class="font-bold text-3xl text-green-600" >Empleados</h1>
-            <p class="text-xl font-bold" >Administra o gestiona la informacion de los empleados</p>
+            <h1 class="font-bold text-3xl text-green-600" >Clientes</h1>
+            <p class="text-xl font-bold" >Administra o gestiona la informacion de los clientes</p>
         </div>
 
         <form class="flex flex-col items-center bg-slate-100 shadow-lg p-5 rounded-md mt-5 gap-3" action="/clientes" method="POST" >
@@ -111,9 +111,10 @@
                     </div>
                 </div>
             </fieldset>
-
-            <input type="number" name="id" value="<?php echo $cliente->id; ?>" hidden >
-            <input type="number" name="activo" value="<?php echo $cliente->activo; ?>" hidden >
+            
+            <?php if($cliente): ?>
+                <input type="number" name="id" value="<?php echo $cliente->id; ?>" hidden >
+            <?php endif; ?>
 
             <button class="bg-green-600 py-1 px-2 hover:bg-green-700 rounded font-bold text-white" >
                 <?php 
@@ -144,7 +145,7 @@
             <?php foreach($clientes as $cliente): ?>
                 <tr class="border-y" >
                     <td class="px-2 py-1" ><?php echo $cliente->id; ?></td>
-                    <td class="px-2 py-1" ><?php echo $cliente->nombre; ?></td>
+                    <td class="px-2 py-1" ><?php echo $cliente->nombreCliente; ?></td>
                     <td class="px-2 py-1" ><?php echo $cliente->correo; ?></td>
                     <td class="px-2 py-1" ><?php echo $cliente->numero; ?></td>
                     <td class="px-2 py-1" ><?php echo $cliente->calleNumero; ?></td>
@@ -153,8 +154,8 @@
                     <td class="px-2 py-1" ><?php echo $cliente->municipio; ?></td>
                     <td class="flex flex-col gap-2 justify-center px-2 py-1" >
                     
-                    <form action="/admin/empleados" class="w-full" >
-                        <input type="number" name="id" value="<?php echo $empleado->id; ?>" hidden >
+                    <form action="/clientes" class="w-full" >
+                        <input type="number" name="id" value="<?php echo $cliente->id; ?>" hidden >
                         <button
                             type="submit"
                             class="bg-blue-500 font-bold text-base px-2 py-1 rounded-lg text-white w-full"

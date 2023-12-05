@@ -64,6 +64,10 @@
                 </div>
             </div>
 
+            <?php if($autor): ?>
+                <input type="number" name="id" value="<?php echo $autor->id; ?>" hidden >
+            <?php endif; ?>
+
             <button
                 type="submit"
                 class="bg-green-600 text-white font-bold px-2 py-1 rounded-lg mt-5 hover:bg-green-700 transition-colors"

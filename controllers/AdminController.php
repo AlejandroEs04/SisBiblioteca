@@ -12,6 +12,7 @@ use Model\Genero;
 use Model\InfoLibro;
 use Model\LimLibros;
 use Model\Libro;
+use Model\Negocio;
 use Model\Rango;
 use Model\Turno;
 use MVC\Router;
@@ -34,16 +35,18 @@ class AdminController {
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             $empleado = new Emplado($_POST);
-
-            if($_POST['id']) {
+            
+            if($_POST['id'] && empty($_POST['password'])) {
                 $empleadoID = Emplado::where('id', $empleado->id);
-
                 $empleado->password = $empleadoID->password;
+            } else {
+                $empleado->hashPassword();
             }
 
             $alertas = $empleado->validar();
 
             if(empty($alertas)) {
+
                 $res = $empleado->guardar();
 
                 if($res) {
@@ -88,8 +91,6 @@ class AdminController {
     }
 
     public static function addAutores(Router $router) {
-
-        $autor = new Autor();
         $autores = Autor::all();
 
         if($_SERVER['REQUEST_METHOD'] === "POST") {
@@ -108,7 +109,13 @@ class AdminController {
 
         if($_GET['id']) {
             if($_GET['eliminar']) {
-                
+                $autor = Autor::where('id', $_GET['id']);
+
+                $res = $autor->eliminar();
+
+                if($res) {
+                    header('Location: /add-authors');
+                }
             } else {
                 $autor = Autor::where('id', $_GET['id']);
             }
@@ -145,7 +152,13 @@ class AdminController {
 
         if($_GET['id']) {
             if($_GET['eliminar']) {
-                
+                $libro = Libro::where('id', $_GET['id']);
+
+                $res = $libro->eliminar();
+
+                if($res) {
+                    header('Location: /add-books');
+                }
             } else {
                 $libro = Libro::where('id', $_GET['id']);
             }
@@ -192,8 +205,60 @@ class AdminController {
     }
 
     public static function scheduleAdmin(Router $router) {
-        $router->render("admin/schedule", [
+        $turnos = Turno::all();
+        $rangos = Rango::all();
 
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if($_POST['turno']) {
+                $turno = new Turno($_POST);
+
+                $res = $turno->guardar();
+
+                if($res) {
+                    header('Location: /admin/schedule');
+                }
+            }
+
+            if($_POST['rango']) {
+                $rango = new Rango($_POST);
+
+                $res = $rango->guardar();
+
+                if($res) {
+                    header('Location: /admin/schedule');
+                }
+            }
+        }
+
+        $router->render("admin/schedule", [
+            'turnos' => $turnos,
+            'rangos' => $rangos
+        ]);
+    }
+
+    public static function configAdmin(Router $router) {
+        $negocio = Negocio::all();
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $negocio[0]->nombre = $_POST['nombre'];
+            $negocio[0]->correo = $_POST['correo'];
+            $negocio[0]->numero = $_POST['numero'];
+            $negocio[0]->vision = $_POST['vision'];
+            $negocio[0]->mision = $_POST['mision'];
+            $negocio[0]->calleNumero = $_POST['calleNumero'];
+            $negocio[0]->colonia = $_POST['colonia'];
+            $negocio[0]->codigoPostal = $_POST['codigoPostal'];
+            $negocio[0]->municipioID = 973;
+
+            $res = $negocio[0]->guardar();
+
+            if($res) {
+                header('Location: /admin/config');
+            }
+        }
+
+        $router->render("admin/config", [
+            'negocio' => $negocio[0]
         ]);
     }
 }

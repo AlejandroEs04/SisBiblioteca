@@ -82,6 +82,10 @@
                 >
             </div>
 
+            <?php if($libro): ?>
+                <input type="number" name="id" value="<?php echo $libro->id; ?>" hidden >
+            <?php endif; ?>
+
             <div class="flex items-end" >
                 <button class="px-2 py-1 bg-green-500 hover:bg-green-600 text-white font-bold rounded-md w-full h-10 transition uppercase" >
                     <?php 

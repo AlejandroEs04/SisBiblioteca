@@ -10,6 +10,10 @@
                 <input type="text" name="nombre" placeholder="Nombre del genero" class="px-2 py-1 rounded w-full" value="<?php echo $genero->nombre; ?>" >
             </div>
 
+            <?php if($genero): ?>
+                <input type="number" name="id" value="<?php echo $genero->id; ?>" hidden >
+            <?php endif; ?>
+
             <button
                 type="submit"
                 class="bg-green-600 text-white font-bold px-2 py-1 rounded-lg mt-5 hover:bg-green-700 transition-colors"

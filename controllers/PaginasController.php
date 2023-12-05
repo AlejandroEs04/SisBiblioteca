@@ -19,6 +19,7 @@ use Model\PrestamoLibro;
 
 class PaginasController {
     public static function index(Router $router) {
+        $negocio = Negocio::all();
         $clientes = Cliente::all();
         $empleados = Emplado::all();
         $librosTabla = [];
@@ -99,6 +100,12 @@ class PaginasController {
 
     public static function prestamos(Router $router) {
         $prestamos = PrestamoView::all();
+        $negocio = Negocio::all();
+
+        if($_GET['id']) {
+            $prestamo = PrestamoView::where('id', $_GET['id']);
+            $libros = PrestamoLibro::whereAll('prestamoID', $_GET['id']);
+        }
 
         if($_GET['finalizar']) {
             $prestamo = Prestamo::where('id', $_GET['prestamo']);
@@ -124,12 +131,15 @@ class PaginasController {
         }
 
         $router->render('paginas/prestamos', [
-            'prestamos' => $prestamos
+            'prestamos' => $prestamos,
+            'prestamo' => $prestamo,
+            'libros' => $libros
         ]);
     }
 
     public static function multas(Router $router) {
         $prestamos = Prestamo::whereAll('activo', 1);
+        $negocio = Negocio::all();
         $multas = MultaView::all();
 
         foreach($prestamos as $prestamo) {
@@ -173,6 +183,7 @@ class PaginasController {
     }
 
     public static function clientes(Router $router) {
+        $negocio = Negocio::all();
         $clientes = ClienteView::all();
         $estados = Estado::all();
         $clienteEditar = null;
@@ -191,9 +202,25 @@ class PaginasController {
             }
         }
 
+        if($_GET['id']) {
+            if($_GET['eliminar']) {
+                $empleado = Emplado::where('id', $_GET['id']);
+
+                $empleado->activo = 0;
+                $res = $empleado->guardar();
+
+                if($res) {
+                    header('Location: /admin/empleados');
+                }
+            } else {
+                $cliente = Cliente::where('id', $_GET['id']);
+            }
+        }
+
         $router->render('paginas/clientes', [
             'clientes' => $clientes,
-            'estados' => $estados
+            'estados' => $estados,
+            'cliente' => $cliente,
         ]);
     }
 }

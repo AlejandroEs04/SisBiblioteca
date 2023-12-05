@@ -59,6 +59,7 @@
                     <option value="<?php echo $cliente->id; ?>" ><?php echo $cliente->nombre; ?></option>
                 <?php endforeach; ?>
             </select>
+            <p class="font-bold mt-2" >Si el cliente es nuevo, agreguelo antes <a href="/clientes" class="text-base text-green-600 hover:text-green-800 font-bold uppercase" >Haz Click Aqui</a></p>
         </div>
 
         <div class="mt-5" >

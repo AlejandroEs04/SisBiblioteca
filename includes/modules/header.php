@@ -1,8 +1,15 @@
+<?php 
+    use Model\Negocio;
+
+    $negocio = Negocio::all();
+?>
+
+
 <div class="bg-green-600 flex justify-between items-center mx-40" >
     <div class="flex gap-5 items-center justify-center text-center">
         <a href="/" class="flex items-center gap-5" >
             <img src="/build/img/logo.png" alt="Logo de bookstacker" class=" h-10 w-10" >
-            <h1 class="text-2xl font-bold text-white" >Bookstacker</h1>
+            <h1 class="text-2xl font-bold text-white" ><?php echo $negocio[0]->nombre ?></h1>
         </a>
 
         <nav class="flex ml-5 gap-5 text-white" >
@@ -18,7 +25,7 @@
     
     <div class="flex items-center gap-2" >
         <a
-            href="/config"
+            href="/admin/config"
             class="bg-gray-600 p-1.5 rounded-sm hover:bg-gray-700 transition-all text-white flex items-center justify-center"
         >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

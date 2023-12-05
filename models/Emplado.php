@@ -33,8 +33,8 @@ class Emplado extends ActiveRecord {
         $this->estadoID = $args['estadoID'] ?? '';
         $this->apellidos = $args['apellidos'] ?? '';
         $this->userName = $args['userName'] ?? '';
-        $this->activo = $args['activo'];
-    }
+        $this->activo = $args['activo'] ?? true;
+    } 
 
     public function validar() {
         if(!$this->nombre) {

@@ -2,6 +2,8 @@
 
 namespace Model;
 
+use Model\DetPrestamo;
+
 class Prestamo extends ActiveRecord {
     protected static $tabla = 'prestamo';
     protected static $columnasDB = ['id', 'clienteID', 'empleadoID', 'activo', 'fechaInicio', 'fechaFin', 'multa'];
@@ -28,5 +30,13 @@ class Prestamo extends ActiveRecord {
         $query = 'CALL crearDetPrestamo( ' . $prestamoID . ', ' . $libroID . ' )';
         $resultado = self::$db->query($query);
         return $resultado;
+    }
+    
+    public static function eliminarDetPrestamo($id) {
+        $detPrestamos = DetPrestamo::whereAll('prestamoID', $id);
+
+        foreach($detPrestamos as $prestamo) {
+            $prestamo->eliminarPrestamo();
+        }
     }
 }

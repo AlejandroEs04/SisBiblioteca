@@ -9,11 +9,13 @@ use Model\Emplado;
 use Model\EmpleadoView;
 use Model\Estado;
 use Model\Genero;
+use Model\InfoLibro;
 use Model\LimLibros;
 use Model\Libro;
 use Model\Rango;
 use Model\Turno;
 use MVC\Router;
+use OCILob;
 
 class AdminController {
     public static function index(Router $router) {
@@ -28,9 +30,16 @@ class AdminController {
         $rangos = Rango::all();
 
         $empleados = EmpleadoView::all();
+        $empleado = null;
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             $empleado = new Emplado($_POST);
+
+            if($_POST['id']) {
+                $empleadoID = Emplado::where('id', $empleado->id);
+
+                $empleado->password = $empleadoID->password;
+            }
 
             $alertas = $empleado->validar();
 
@@ -43,11 +52,38 @@ class AdminController {
             }
         }
 
+        if($_GET['id']) {
+            if($_GET['eliminar']) {
+                $empleado = Emplado::where('id', $_GET['id']);
+
+                $empleado->activo = 0;
+                $res = $empleado->guardar();
+
+                if($res) {
+                    header('Location: /admin/empleados');
+                }
+            } else {
+                $empleado = Emplado::where('id', $_GET['id']);
+            }
+
+            if($_GET['activar']) {
+                $empleado = Emplado::where('id', $_GET['id']);
+
+                $empleado->activo = 1;
+                $res = $empleado->guardar();
+
+                if($res) {
+                    header('Location: /admin/empleados');
+                }
+            }
+        }
+
         $router->render('admin/empleadosAdmin', [
             'turnos' => $turnos,
             'rangos' => $rangos,
             'estados' => $estados,
-            'empleados' => $empleados
+            'empleados' => $empleados,
+            'empleado' => $empleado
         ]);
     }
 
@@ -70,8 +106,17 @@ class AdminController {
             }
         }
 
+        if($_GET['id']) {
+            if($_GET['eliminar']) {
+                
+            } else {
+                $autor = Autor::where('id', $_GET['id']);
+            }
+        }
+
         $router->render("admin/addAutores", [
             'autores' => $autores,
+            'autor' => $autor
         ]);
     }
 
@@ -80,6 +125,9 @@ class AdminController {
         $generos = Genero::all();   
         $clasificaciones = Clasificacion::all();
         $limites = LimLibros::all();
+        $libros = InfoLibro::all();
+
+        $libro = null;
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             $libro = new Libro($_POST);
@@ -95,11 +143,21 @@ class AdminController {
             }
         }
 
+        if($_GET['id']) {
+            if($_GET['eliminar']) {
+                
+            } else {
+                $libro = Libro::where('id', $_GET['id']);
+            }
+        }
+
         $router->render("admin/addBooks", [
             'editoriales' => $editoriales,
             'generos'=> $generos,
             'clasificaciones'=> $clasificaciones,
-            'limites'=> $limites
+            'limites'=> $limites,
+            'libros' => $libros,
+            'libro' => $libro
         ]);
     }
 
@@ -123,8 +181,19 @@ class AdminController {
             }
         }
 
+        if($_GET['id']) {
+            $genero = Genero::where('id', $_GET['id']);
+        } 
+
         $router->render("admin/addCategories", [
             'generos' => $generos,
+            'genero' => $genero
+        ]);
+    }
+
+    public static function scheduleAdmin(Router $router) {
+        $router->render("admin/schedule", [
+
         ]);
     }
 }

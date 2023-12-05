@@ -18,7 +18,7 @@
                     <?php incluirTemplate('header', null) ?>
                 </header>
 
-                <main class="flex items-center justify-center my-14" >
+                <main class="flex items-center justify-center my-14 w-full" >
                     <?php echo $contenido; ?>
                 </main>
             </div>

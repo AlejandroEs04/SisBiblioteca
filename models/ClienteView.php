@@ -2,32 +2,30 @@
 
 namespace Model;
 
-class EmpleadoView extends ActiveRecord {
-    protected static $tabla = 'empleadoView';
-    protected static $columnasDB = ['id', 'nombre', 'calleNumero', 'colonia', 'codigoPostal', 'estado', 'municipio', 'rango', 'turno', 'activo'];
+class ClienteView extends ActiveRecord {
+    protected static $tabla = 'clienteView';
+    protected static $columnasDB = ['id', 'nombreCliente', 'correo', 'numero', 'calleNumero', 'colonia', 'codigoPostal', 'estado', 'municipio'];
 
     public $id;
-    public $nombre;
+    public $nombreCliente;
+    public $correo;
+    public $numero;
     public $calleNumero;
     public $colonia;
     public $codigoPostal;
     public $estado;
     public $municipio;
-    public $rango;
-    public $turno;
-    public $activo;
 
     public function __construct($args = [])
     {
         $this->id = $args['id'];
-        $this->nombre = $args['nombre'];
+        $this->nombreCliente = $args['nombreCliente'];
+        $this->correo = $args['correo'];
+        $this->numero = $args['numero'];
         $this->calleNumero = $args['calleNumero'];
         $this->colonia = $args['colonia'];
         $this->codigoPostal = $args['codigoPostal'];
         $this->estado = $args['estado'];
         $this->municipio = $args['municipio'];
-        $this->rango = $args['rango'];
-        $this->turno = $args['turno'];
-        $this->activo = $args['activo'];
     }
 }

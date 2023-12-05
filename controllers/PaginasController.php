@@ -3,24 +3,27 @@
 namespace Controllers;
 
 use Model\Cliente;
+use Model\ClienteView;
 use Model\Emplado;
 use Model\EstadosMunicipios;
 use Model\InfoLibro;
-use Model\Libro;
+use Model\Estado;
 use Model\Multa;
 use Model\MultaView;
 use Model\Prestamo;
 use Model\PrestamoView;
 use MVC\Router;
+use Model\Negocio;
+use Model\PrestamoLibro;
+
 
 class PaginasController {
     public static function index(Router $router) {
         $clientes = Cliente::all();
         $empleados = Emplado::all();
         $librosTabla = [];
-        $libros = InfoLibro::all();
+        $libros = InfoLibro::whereAll('activo', 1);
         $i = 0;
-        
 
         if($_SERVER['REQUEST_METHOD'] === "POST") {
             if($_POST['libros']) {
@@ -35,9 +38,6 @@ class PaginasController {
             if($_POST['libro']) {
                 foreach($libros as $libro) {
                     if($libro->id === $_POST['libro']) {
-                        debuguear($libro);
-                        $librosAct = array_diff($libros, array($libro->id));
-                        debuguear($librosAct);
                         $librosTabla[$i] = $libro;
 
                     }
@@ -75,15 +75,19 @@ class PaginasController {
                 $res = $prestamoObj->guardar();
 
                 foreach($librosTabla as $libro) {
-                    $response = Prestamo::crearDetPrestamo($res['id'], $libro->id);
-
-                    if($response) {
-                        header('Location: /');
-                    }
+                    Prestamo::crearDetPrestamo($res['id'], $libro->id);
                 }
+
+                $librosTabla = [];
+
+                $negocio = Negocio::all();
+                $prestamoTicket = PrestamoView::where('id', $res['id']);
+
+                $prestamoTicket->libros = PrestamoLibro::whereAll('prestamoID', $res['id']);
+
+                $res = crearTicket($negocio, $prestamoTicket);
             }
         }
-
 
         $router->render('paginas/index', [
             'librosTabla' => $librosTabla,
@@ -111,6 +115,7 @@ class PaginasController {
         if($_GET['eliminar']) {
             $prestamo = Prestamo::where('id', $_GET['prestamo']);
 
+            $res0 = Prestamo::eliminarDetPrestamo($_GET['prestamo']);
             $res = $prestamo->eliminar();
 
             if($res) {
@@ -165,5 +170,30 @@ class PaginasController {
 
         // Usa json_encode para convertir los datos a JSON
         echo json_encode($municipios);
+    }
+
+    public static function clientes(Router $router) {
+        $clientes = ClienteView::all();
+        $estados = Estado::all();
+        $clienteEditar = null;
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $cliente = new Cliente($_POST);
+
+            $alertas = $cliente->validar();
+            
+            if(empty($alertas)) {
+                $res = $cliente->guardar();
+
+                if($res) {
+                    header('Location: /clientes');
+                }
+            }
+        }
+
+        $router->render('paginas/clientes', [
+            'clientes' => $clientes,
+            'estados' => $estados
+        ]);
     }
 }

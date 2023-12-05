@@ -9,8 +9,8 @@
             <a href="/" class="hover:text-gray-300 transition-colors" >Inicio</a>
             <?php if($_SESSION['rango'] === '3'): ?>
             <a href="/admin/empleados" class="hover:text-gray-300 transition-colors" >Empleados</a>
-            <a href="/turnos" class="hover:text-gray-300 transition-colors" >Turnos</a>
-            <a href="/rangos" class="hover:text-gray-300 transition-colors" >Rangos</a>
+            <a href="/admin/schedule" class="hover:text-gray-300 transition-colors" >Turnos</a>
+            <a href="/admin/schedule" class="hover:text-gray-300 transition-colors" >Rangos</a>
             <?php endif; ?>
         </nav>
     </div>

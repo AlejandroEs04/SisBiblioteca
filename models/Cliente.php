@@ -4,26 +4,30 @@ namespace Model;
 
 class Cliente extends ActiveRecord {
     protected static $tabla = 'cliente';
-    protected static $columnasDB = ['id', 'nombre', 'correo', 'numero', 'calleNumero', 'colonia', 'codigoPostal', 'municipioID'];
+    protected static $columnasDB = ['id', 'nombre', 'correo', 'numero', 'calleNumero', 'colonia', 'codigoPostal', 'municipioID', 'apellidos', 'estadoID'];
 
     public $id;
     public $nombre;
+    public $apellidos;
     public $correo;
     public $numero;
     public $calleNumero;
     public $colonia;
     public $codigoPostal;
-    public $minicipioID;
+    public $municipioID;
+    public $estadoID;
 
     public function __construct($args = []) {
         $this->id = $args['id'] ?? null;
         $this->nombre = $args['nombre'] ?? '';
+        $this->apellidos = $args['apellidos'] ?? '';
         $this->correo = $args['correo'] ?? '';
         $this->numero = $args['numero'] ?? '';
         $this->calleNumero = $args['calleNumero'] ?? '';
         $this->colonia = $args['colonia'] ?? '';
         $this->codigoPostal = $args['codigoPostal'] ?? '';
-        $this->minicipioID = $args['minicipioID'] ?? '';
+        $this->municipioID = $args['municipioID'] ?? '';
+        $this->estadoID = $args['estadoID'] ?? '';
     }
 
     public function validar() {
@@ -45,7 +49,7 @@ class Cliente extends ActiveRecord {
         if(!$this->codigoPostal) {
             self::setAlerta('error', 'La direccion es obligatoria');
         }
-        if(!$this->minicipioID) {
+        if(!$this->municipioID) {
             self::setAlerta('error', 'La direccion es obligatoria');
         }
 

@@ -1,4 +1,4 @@
-<div class="flex flex-col items-center overflow-y-auto" >
+<div class="flex flex-col items-center overflow-y-auto w-full" >
     <div class="w-full md:w-2/3" >
         <div class="text-center" >
             <h1 class="font-bold text-3xl text-green-600" >Administracion</h1>

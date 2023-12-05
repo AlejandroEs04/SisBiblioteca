@@ -13,6 +13,10 @@ $router = new Router();
 /** EMPLEADOS **/
 $router->get('/', [PaginasController::class, 'index']);
 $router->post('/', [PaginasController::class, 'index']);
+
+$router->get('/clientes', [PaginasController::class, 'clientes']);
+$router->post('/clientes', [PaginasController::class, 'clientes']);
+
 $router->get('/estados', [PaginasController::class, 'estados']);
 
 $router->get('/prestamos', [PaginasController::class, 'prestamos']);
@@ -42,6 +46,9 @@ $router->post('/admin', [AdminController::class ,'index']);
 
 $router->get('/admin/empleados', [AdminController::class ,'empleadosAdmin']);
 $router->post('/admin/empleados', [AdminController::class ,'empleadosAdmin']);
+
+$router->get('/admin/schedule', [AdminController::class ,'scheduleAdmin']);
+$router->post('/admin/schedule', [AdminController::class ,'scheduleAdmin']);
 
 /** LOGIN O LOGOUT **/
 $router->get('/login', [AuthController::class, 'login']);

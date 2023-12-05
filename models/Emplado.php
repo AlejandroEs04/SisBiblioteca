@@ -4,7 +4,7 @@ namespace Model;
 
 class Emplado extends ActiveRecord {
     protected static $tabla = 'empleado';
-    protected static $columnasDB = ['id', 'nombre', 'password', 'rangoID', 'turnoID', 'calleNumero', 'colonia', 'codigoPostal', 'municipioID', 'estadoID', 'apellidos', 'userName'];
+    protected static $columnasDB = ['id', 'nombre', 'password', 'rangoID', 'turnoID', 'calleNumero', 'colonia', 'codigoPostal', 'municipioID', 'estadoID', 'apellidos', 'userName', 'activo'];
 
     public $id;
     public $nombre;
@@ -18,6 +18,7 @@ class Emplado extends ActiveRecord {
     public $estadoID;
     public $apellidos;
     public $userName;
+    public $activo;
 
     public function __construct($args = []) {
         $this->id = $args['id'] ?? null;
@@ -32,6 +33,7 @@ class Emplado extends ActiveRecord {
         $this->estadoID = $args['estadoID'] ?? '';
         $this->apellidos = $args['apellidos'] ?? '';
         $this->userName = $args['userName'] ?? '';
+        $this->activo = $args['activo'];
     }
 
     public function validar() {
